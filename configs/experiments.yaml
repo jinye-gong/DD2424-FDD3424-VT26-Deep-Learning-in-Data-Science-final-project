@@ -1,0 +1,87 @@
+# 报告必要实验队列（200 epoch，seed=42）
+# FLOPs 档位：low ~150M | med ~310M | high ~460M（±10%）
+
+experiments:
+  # --- §5.1 / §4.1 主基线 ---
+  - model: vgg_baseline
+    width: 64
+    budget: baseline
+    note: "VGG 强基线（med FLOPs）"
+
+  - model: depthwise_small
+    width: 64
+    budget: baseline
+    note: "DW 默认 width=64"
+
+  # convnext w=64 已完成，run_experiments 会跳过已有 checkpoint
+
+  # --- §5.3 三档位 × 三 block（FLOPs 对齐）---
+  - model: vgg_baseline
+    width: 48
+    budget: low
+
+  - model: depthwise_small
+    width: 128
+    budget: low
+
+  - model: convnext_small
+    width: 32
+    budget: low
+
+  - model: depthwise_small
+    width: 175
+    budget: med
+
+  - model: convnext_small
+    width: 52
+    budget: med
+
+  - model: vgg_baseline
+    width: 80
+    budget: high
+
+  - model: depthwise_small
+    width: 224
+    budget: high
+
+  # --- §5.4 kernel 缩放（med 预算附近）---
+  - model: convnext_small
+    width: 52
+    kernel_size: 3
+    budget: med_kernel
+
+  - model: convnext_small
+    width: 52
+    kernel_size: 5
+    budget: med_kernel
+
+  - model: convnext_small
+    width: 52
+    kernel_size: 11
+    budget: med_kernel
+
+  - model: depthwise_small
+    width: 175
+    kernel_size: 5
+    budget: med_kernel
+
+  - model: depthwise_small
+    width: 175
+    kernel_size: 7
+    budget: med_kernel
+
+  - model: depthwise_small
+    width: 175
+    kernel_size: 11
+    budget: med_kernel
+
+  # --- §5.4 depth 缩放（ConvNeXt，对齐 ~310M 或注明偏差）---
+  - model: convnext_small
+    width: 64
+    depths: "1,1,1"
+    budget: depth_shallow
+
+  - model: convnext_small
+    width: 43
+    depths: "3,3,3"
+    budget: depth_deep

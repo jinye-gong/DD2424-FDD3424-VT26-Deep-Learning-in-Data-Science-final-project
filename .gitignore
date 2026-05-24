@@ -1,0 +1,44 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.env
+
+data/cifar10/
+# 保留统一 val 划分索引，供队友 clone 后直接使用
+data/artifacts/*
+!data/artifacts/.gitkeep
+!data/artifacts/cifar10_val_indices.pt
+
+checkpoints/
+logs/
+
+*.pt
+!data/artifacts/cifar10_val_indices.pt
+*.pth
+
+.DS_Store
+
+# 报告：仓库只保留 Markdown，PDF 本地生成
+REPORT_zh.pdf
+REPORT*.pdf
+
+# 课程/说明 PDF（已有 README.md）
+README.pdf
+DD2424_Project.pdf
+DefaultProject2.pdf
+
+# 本地跑实验 / 温控脚本（非复现必需）
+configs/temp_guard.conf
+scripts/temp_guard.sh
+scripts/temps_lib.sh
+scripts/watch_temps.sh
+scripts/continue_queue.sh
+scripts/wait_and_train_remaining.sh
+scripts/watch_progress.sh
+
+# 报告草稿与大纲（终稿见 REPORT_zh.md）
+REPORT.md
+REPORT_DATA.md
+REPORT_OUTLINE.md
+REPORT_OUTLINE_zh.md

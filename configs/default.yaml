@@ -1,0 +1,39 @@
+# Group 148 — unified experiment config (do not change per-person without team agreement)
+
+seed: 42
+data_root: ./data/cifar10
+val_ratio: 0.1
+batch_size: 128
+num_workers: 4
+pin_memory: true
+
+epochs: 200
+optimizer: adamw
+lr: 0.001
+weight_decay: 0.05
+betas: [0.9, 0.999]
+
+scheduler: cosine
+warmup_epochs: 5
+min_lr: 1.0e-6
+
+# Set true only for team-agreed ablations
+use_amp: false
+use_mixup: false
+mixup_alpha: 0.2
+
+augment:
+  random_crop: true
+  crop_padding: 4
+  random_horizontal_flip: true
+
+normalize:
+  mean: [0.4914, 0.4822, 0.4465]
+  std: [0.2470, 0.2435, 0.2616]
+
+# FLOPs: report flops (= 2 * MACs) from thop; see utils/metrics.py
+flops_input_size: [1, 3, 32, 32]
+
+checkpoint_dir: ./checkpoints
+log_dir: ./logs
+results_csv: ./logs/results.csv
