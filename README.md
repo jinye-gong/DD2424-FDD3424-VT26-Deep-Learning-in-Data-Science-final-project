@@ -209,3 +209,4 @@ A：模板默认 `width=64` 未做预算对齐；扩展模型时请调节 `width
 - 报告草稿（含现有数据）：`REPORT_zh.md` / `REPORT.md`
 - 报告大纲：`REPORT_OUTLINE_zh.md` / `REPORT_OUTLINE.md`
 - 实验数据快照：`REPORT_DATA_zh.md`（`python scripts/generate_report_assets.py` 生成）
+- **Overleaf 上传包：** `paper_overleaf_en.zip`（英文）、`paper_overleaf_zh.zip`（中文）；源码见 `paper/`，说明见 `paper/README_OVERLEAF.md`

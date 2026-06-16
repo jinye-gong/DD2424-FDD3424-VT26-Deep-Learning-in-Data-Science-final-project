@@ -1,0 +1,62 @@
+% Minimal NeurIPS-style layout for local / Overleaf compilation.
+% For camera-ready submission, replace with the official neurips_2026.sty from https://neurips.cc
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{neurips_2026}[2026/01/01 NeurIPS 2026 style (minimal)]
+
+\RequirePackage[letterpaper, textwidth=5.5in, textheight=9in, left=1.5in, top=1in]{geometry}
+\RequirePackage{times}
+\RequirePackage{microtype}
+\RequirePackage{natbib}
+\RequirePackage{enumitem}
+
+\renewcommand{\normalsize}{\@setfontsize\normalsize{10}{11}}
+\normalsize
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5.5pt}
+
+\newcommand{\@neuripsfooter}{}
+\newcommand{\@neuripsfinal}{}
+
+\DeclareOption{final}{%
+  \renewcommand{\@neuripsfinal}{1}%
+  \renewcommand{\@neuripsfooter}{\par\small\textit{DD2424 Group 148 Final Report.}}%
+}
+\DeclareOption{preprint}{%
+  \renewcommand{\@neuripsfooter}{\par\small\textit{Preprint. Work in progress.}}%
+}
+\DeclareOption{nonatbib}{\PassOptionsToPackage{numbers,compress}{natbib}}
+\ProcessOptions\relax
+
+% NeurIPS \And / \AND are for tabular author blocks only; do not use outside tabular.
+\newcommand{\And}{\unskip{}, }
+\newcommand{\AND}{\\[0.75ex]}
+
+\renewcommand{\maketitle}{%
+  \begingroup
+    \centering
+    \vspace*{0.25in}
+    {\LARGE\bfseries \@title\par}
+    \vspace{0.2in}
+    {\normalsize \@author\par}
+    \vspace{0.15in}
+    {\normalsize DD2424 Deep Learning in Data Science --- KTH, 2026\par}
+    \vspace{0.25in}
+  \endgroup
+}
+
+\renewenvironment{abstract}{%
+  \centerline{\bfseries Abstract}%
+  \vspace{0.35em}%
+  \begin{quote}%
+  \small
+}{%
+  \end{quote}%
+  \vspace{0.6em}%
+}
+
+\newenvironment{ack}{%
+  \section*{Acknowledgments}%
+}{}
+
+\AtEndDocument{\@neuripsfooter}
